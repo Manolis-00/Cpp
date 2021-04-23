@@ -1,182 +1,121 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
-#define N 3
+#define FOUR 4
 
-class ticTac
+class demigorgon
 {
 private:
-    char **array;
-    char player;
+    int height = 5;
+    int weight = 500;
+    int health;
 public:
-    ticTac();
-    bool play(int x, int y);
-    char checkWinner();
-    void nextPlayer();
-    char getPlayer() const;
-    void emptyGrid(ostream &);
-    ~ticTac();
+    demigorgon();
+    int damage();
 };
 
-ticTac::ticTac()
+class demidog
 {
-    array = new char *[N];
+private:
+    int health;
+public:
+    demidog();
+    int damage();
+};
 
-    for(int i = 0; i < N; i++)
-        array[i] = new char [N];
-
-    for(int i = 0; i < N; i++)
-    {
-        for(int j = 0; j < N; j++)
-        {
-            array[i][j] = '-';
-        }
-    }
-
-    player = 'X';
-}
-
-bool ticTac::play(int x, int y)
+class hive
 {
-    if (array[x][y] == '-')
+private:
+    demigorgon *demigorgonPointer;
+    demidog *demidogArray;
+    int totalDemidogs;
+public:
+    hive(bool gorgon);
+    int damage();
+    ~hive();
+};
+
+hive::hive(bool gorgon)
+{
+    if (gorgon)
     {
-        array[x][y] = player;
-        return true;
+        demigorgonPointer = new demigorgon;
+        if (!demigorgonPointer)
+            cout<<"Error with memory allocation";
     }
     else
-        return false;
+        demigorgonPointer = NULL;
+
+    int dogs = 10 + rand() % (40-0+1);
+    demidogArray = new demidog [dogs];
+    if(!demidogArray)
+        cout<<"Error with memory allocation";
+    totalDemidogs = dogs;
 }
 
-char ticTac::checkWinner()
+int hive::damage()
 {
-    int temp1 = 0;
-    int temp2 = 0;
-    int temp3 = 0;
-    int temp4 = 0;
+    int damage1;
+    int damage2 = 0;
 
-    for (int i = 0; i < N; i++)
+    if (demigorgonPointer != NULL)
     {
-        for(int j = 0; j < 1; j++)
-        {
-            if(array[i][j] == array[i][j+1]  && array[i][j+1] == array[i][j+2] && array[i][j+2] == array[i][j] && array[i][j+2] != '-')
-            {
-                temp1 = 1;
-                return array[i][j];
-            }
-        }
+        damage1 = demigorgonPointer->damage();
+        cout<<"Demigorgon attacks! (damage: "<<damage1<<")"<<endl;
     }
 
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < totalDemidogs; i++)
     {
-        for (int j = 0; j < N; j++)
-        {
-            if(array[i][j] == array[i+1][j] && array[i+1][j] == array[i+2][j] && array[i][j] == array[i+2][j] && array[i][j] != '-')
-            {
-                temp2 = 1;
-                return array[i][j];
-            }
-        }
+        damage2 = demidogArray[i].damage();
+        cout<<"Demidog "<<i+1<<" attacks! (damage: "<<demidogArray[i].damage()<<")"<<endl;
     }
 
-    for (int i = 0; i < 1; i++)
-    {
-        for (int j = 0; j < 1; j++)
-        {
-            if (array[i][j] == array[i+1][j+1] && array[i+1][j+1] == array[i+2][j+2] && array[i][j] == array[i+2][j+2] && array[i][j] != '-')
-            {
-                temp3 = 1;
-                return array[i][j];
-            }
-        }
-    }
+    cout<<totalDemidogs<<" attack with a total damage of "<<damage2<<endl;
 
-    for (int i = 0; i < 1; i++)
-    {
-        for (int j = 0; j < 1; j++)
-        {
-            if (array[i][j+2] == array[i+1][j+1] && array[i+1][j+1] == array[i+2][j] && array[i][j+2] == array[i+2][j] && array[i][j+2] != '-')
-            {
-                temp4 = 1;
-                return array[i][j+2];
-            }
-        }
-    }
+    cout<<"Total damage received is "<<damage1+damage2<<endl;
 
-    if(temp1 != 1 && temp2 != 1 && temp3 !=1 && temp4 != 1)
-    {
-        return '-';
-    }
+    return damage2+damage1;
 }
 
-void ticTac::nextPlayer()
+demigorgon::demigorgon()
 {
-    if (player == 'X')
-        player = 'O';
-    else
-        player = 'X';
+        this->health = 10000;
 }
 
-char ticTac::getPlayer() const
+int demigorgon::damage()
 {
-    return player;
+
+
+    return 300 + rand() % (200-0+1);
 }
 
-void ticTac::emptyGrid(ostream &grid)
+demidog::demidog()
 {
-    for(int i = 0; i < N; i++)
-    {
-
-        for(int j = 0; j < N; j++)
-        {
-            grid<<array[i][j];
-        }
-        grid<<endl;
-    }
+    this->health = 100;
 }
 
-ticTac::~ticTac()
+int demidog::damage()
 {
-    delete[] array;
+    return 10 + rand() % (20-0+1);
+}
+
+hive::~hive()
+{
+    delete[] demigorgonPointer;
+    delete[] demidogArray;
 }
 
 int main()
 {
-    bool flag = true;
-    ticTac t;
+    srand(time(nullptr));
+    hive h(true);
 
-    int x, y, step = 0;
+    int damage;
 
-    while (flag)
-    {
-        cout << "Plaisio" << endl;
-        t.emptyGrid(cout);
-        cout << "Player " << t.getPlayer() << " is playing" << endl;
-
-        cout << endl << "Give x coord: ";
-        cin >> x;
-
-        cout << endl << "Give y coord: ";
-        cin >> y;
-
-        if (t.play(x, y) == false) {
-            cout << "Wrong move" << endl;
-            continue;
-        } else
-            step++;
-
-        if (t.checkWinner() != '-') {
-            t.emptyGrid(cout);
-            cout << "The winner is player " << t.checkWinner() << endl;
-            break;
-        } else if (step == 9) {
-            t.emptyGrid(cout);
-            cout << "Draw" << endl;
-            flag = false;
-        }
-
-        t.nextPlayer();
-    }
+    damage = h.damage();
 
     return 0;
 }
