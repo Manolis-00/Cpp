@@ -11,6 +11,7 @@ class OfficeApp:public Application
 {
 private:
     vector<string> appTypes;
+    friend class AppSystem;
 
 public:
     OfficeApp(char *applicationId,

@@ -24,6 +24,8 @@ protected:
     float price;
 
 public:
+    friend class AppSystem;
+
     Application(char *applicationId,
                 const string &applicationName,
                 const string &minimumCompatibleOsVersion,

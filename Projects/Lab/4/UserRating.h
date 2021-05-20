@@ -15,12 +15,18 @@ private:
     float userStars;
     string userName;
     string userComment;
+    friend class AppSystem;
 
 public:
-    UserRating(float userStars, const string &userName, const string &userComment);
+    UserRating(float userStars,
+               const string &userName,
+               const string &userComment);
+
     float getUserStars() const;
+
     string getUserName() const;
+
     string getUserComment() const;
+
     void showData();
-    friend class application;
 };

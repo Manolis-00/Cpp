@@ -16,12 +16,12 @@ private:
     string applicationCreatorID;
     char *applicationCreatorName;
     string email;
+    friend class AppSystem;
 
 public:
     ApplicationCreator(const string &applicationCreatorId,
                        char *applicationCreatorName,
                        const string &email);
-    void showData();
-    friend class application;
 
+    void showData();
 };

@@ -11,6 +11,7 @@ class GameApp:public Application
 private:
     bool onLine;
     string gameCategory;
+    friend class AppSystem;
 
 public:
     GameApp(char *applicationId,

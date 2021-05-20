@@ -29,9 +29,36 @@ int main()
 
     applicationsList.addCreatorsAndRatings(ghostOfTsushima, john13, fromSoftware);
 
-    for(int i = 0; i < applicationsList.getTotalApplications(); i++)
-        applicationsList.showData(applicationsList.getCurrentApplication(i));
+    applicationsList.addApplication(adobeReader);
+    applicationsList.addApplication(microsoftWord);
 
+    //applicationsList.showData();
+
+    applicationsList.addCreatorsAndRatings(microsoftWord, john13, firstApplicationCreator);
+
+    //applicationsList.showData();
+
+    applicationsList.setApplicationId(*witcher, "576a");
+
+    //applicationsList.showData();
+
+    applicationsList.setApplicationName(starWars, "star wars");
+
+    //applicationsList.showData();
+
+    ApplicationCreator cdProjecktRed("12345", "CDProjektRed", "cdprojecktred@gmail.com");
+    applicationsList.setCreatorDetails(*witcher, cdProjecktRed);
+
+    //applicationsList.showData();
+
+    UserRating jim(4.9, "Jimmy", "a masterpiece");
+    applicationsList.addUserRatings(*witcher, jim);
+
+    applicationsList.deleteAppType(microsoftWord, 2);
+    //applicationsList.showData();
+
+    applicationsList.addAppType(microsoftWord, "pdf");
+    applicationsList.showData();
 
     return 0;
 }
