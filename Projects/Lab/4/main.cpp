@@ -1,4 +1,4 @@
-#include "appSystem.h"
+#include "AppSystem.h"
 
 int main()
 {
@@ -58,6 +58,12 @@ int main()
     //applicationsList.showData();
 
     applicationsList.addAppType(microsoftWord, "pdf");
+    //applicationsList.showData();
+
+    OfficeApp libreOffice("99z", "Libre Office", "0.0.5", 0.0, {".doc", ".docx", ".xls"});
+
+    applicationsList.addApplication(libreOffice);
+
     applicationsList.showData();
 
     return 0;

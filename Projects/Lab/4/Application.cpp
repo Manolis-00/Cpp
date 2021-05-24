@@ -10,6 +10,8 @@ Application::Application(char *applicationId,
     this->minimumCompatibleOSVersion = minimumCompatibleOsVersion;
     this->price = price;
     this->userRatings = {};
+    starsAverage = 0.0;
+
 }
 
 Application::Application(char *applicationId,
@@ -25,6 +27,13 @@ Application::Application(char *applicationId,
     this->price = price;
     this->userRatings.assign(1, userRating);
     this->creatorDetails.assign(1, applicationCreator);
+
+    for(int i = 0; i < userRatings.size(); i++)
+    {
+        starsAverage += userRatings[i].getUserStars();
+    }
+
+    starsAverage = starsAverage/userRatings.size();
 }
 
 void Application::showData() {
@@ -50,14 +59,30 @@ void Application::printCreators()
 
 void Application::addUserRating(UserRating &userRating) {
     userRatings.assign(1, userRating);
+
+    for(int i = 0; i < userRatings.size(); i++)
+    {
+        starsAverage += userRatings[i].getUserStars();
+    }
+
+    starsAverage = starsAverage/userRatings.size();
 }
 
 void Application::addApplicationCreator(ApplicationCreator &applicationCreator) {
     creatorDetails.assign(1, applicationCreator);
 }
 
+float Application::getStars(Application &application)
+{
+    return application.userRatings[0].getUserStars();
+}
 
+void Application::setStarsAverage(Application &application)
+{
+    for(int i = 0; i < userRatings.size(); i++)
+    {
+        starsAverage += application.userRatings[0].getUserStars();
+    }
 
-
-
-
+    starsAverage = starsAverage/userRatings.size();
+}

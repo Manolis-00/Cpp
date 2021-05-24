@@ -5,7 +5,7 @@ OfficeApp::OfficeApp(char *applicationId,
                      const string &minimumCompatibleOsVersion,
                      float price,
                      const vector<string> &appTypes):
-                     Application(applicationId, applicationName, minimumCompatibleOsVersion, price)
+        Application(applicationId, applicationName, minimumCompatibleOsVersion, price)
 {
     this->appTypes = appTypes;
 }

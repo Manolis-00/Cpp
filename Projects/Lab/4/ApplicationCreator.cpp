@@ -16,4 +16,3 @@ void ApplicationCreator::showData()
         <<"\n"<<"Application Creator email: "<<email<<endl;
 
 }
-

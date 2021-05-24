@@ -21,7 +21,7 @@ GameApp::GameApp(char *applicationId,
                  float price,
                  bool onLine,
                  const string &gameCategory)
-                 : Application(applicationId, applicationName, minimumCompatibleOsVersion, userFeature, creatorFeatures, price)
+        : Application(applicationId, applicationName, minimumCompatibleOsVersion, userFeature, creatorFeatures, price)
 {
     this->onLine = onLine;
     this->gameCategory = gameCategory;
@@ -42,4 +42,3 @@ void GameApp::showData()
     Application::printRatings();
     Application::printCreators();
 }
-

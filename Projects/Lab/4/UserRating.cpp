@@ -26,5 +26,3 @@ string UserRating::getUserComment() const
 {
     return userComment;
 }
-
-

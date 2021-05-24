@@ -22,6 +22,7 @@ protected:
     vector<ApplicationCreator> creatorDetails;
     vector<UserRating> userRatings;
     float price;
+    float starsAverage;
 
 public:
     friend class AppSystem;
@@ -47,4 +48,9 @@ public:
     void addUserRating(UserRating &userRating);
 
     void addApplicationCreator(ApplicationCreator &applicationCreator);
+
+    float getStars(Application &application);
+
+    void setStarsAverage(Application &application);
+
 };
