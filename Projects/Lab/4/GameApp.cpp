@@ -35,9 +35,9 @@ void GameApp::showData()
         <<"Game Category: "<<gameCategory<<endl;
 
     if(onLine)
-        cout<<"On Line Play: Yes"<<endl;
+        cout<<"On Line Play: Yes"<<"\n"<<endl;
     else
-        cout<<"On Line Play: No"<<endl;
+        cout<<"On Line Play: No"<<"\n"<<endl;
 
     Application::printRatings();
     Application::printCreators();

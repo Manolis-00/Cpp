@@ -30,7 +30,7 @@ Application::Application(char *applicationId,
 
     for(int i = 0; i < userRatings.size(); i++)
     {
-        starsAverage += userRatings[i].getUserStars();
+        starsAverage += userRatings[0].getUserStars();
     }
 
     starsAverage = starsAverage/userRatings.size();
@@ -62,7 +62,7 @@ void Application::addUserRating(UserRating &userRating) {
 
     for(int i = 0; i < userRatings.size(); i++)
     {
-        starsAverage += userRatings[i].getUserStars();
+        starsAverage += userRatings[0].getUserStars();
     }
 
     starsAverage = starsAverage/userRatings.size();

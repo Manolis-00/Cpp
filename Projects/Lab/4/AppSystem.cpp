@@ -115,6 +115,18 @@ void AppSystem::deleteMaliciousCreator(string applicationCreator)
             applications.erase(applications.begin()+i);
     }
 
+    for(int i = 0; i < freeOfficeApps.size(); i++)
+    {
+        if(freeOfficeApps[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
+            freeOfficeApps.erase(freeOfficeApps.begin()+1);
+    }
+
+    for(int i = 0; i < goodGames.size(); i++)
+    {
+        if(goodGames[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
+            goodGames.erase(goodGames.begin()+1);
+    }
+
 }
 
 void AppSystem::showData() {
@@ -131,7 +143,7 @@ void AppSystem::showData() {
         cout<<"\n";
     }
 
-    cout<<"Games with average rating greater than 4 stars: "<<endl;
+    cout<<"\n"<<"Games with average rating greater than 4 stars: "<<endl;
 
     for(auto goodGame : goodGames)
     {

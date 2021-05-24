@@ -35,6 +35,7 @@ void OfficeApp::showData()
     {
         cout<<appTypes[i]<<endl;
     }
+    cout<<"\n";
 
     Application::printRatings();
     Application::printCreators();

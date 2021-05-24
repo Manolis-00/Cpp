@@ -13,6 +13,6 @@ ApplicationCreator::ApplicationCreator(const string &applicationCreatorId,
 void ApplicationCreator::showData()
 {
     cout<<"Application Creator ID: "<<applicationCreatorID<<"\n"<<"Application Creator Name: "<<applicationCreatorName
-        <<"\n"<<"Application Creator email: "<<email<<endl;
+        <<"\n"<<"Application Creator email: "<<email<<"\n"<<endl;
 
 }
