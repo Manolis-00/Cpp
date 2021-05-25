@@ -52,5 +52,4 @@ public:
     float getStars(Application &application);
 
     void setStarsAverage(Application &application);
-
 };

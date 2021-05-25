@@ -10,10 +10,8 @@ int main()
     Application angryBirds("123a", "Angry Birds", "4.0.1", 5.99);
     angryBirds.addUserRating(firstUserRating);
     angryBirds.addApplicationCreator(firstApplicationCreator);
-    //angryBirds.showData();
 
-
-    Application *witcher = new GameApp("567u", "witcher", "1.0.0", firstUserRating, firstApplicationCreator, 49.99, false, "RPG");
+    GameApp *witcher = new GameApp("567u", "witcher", "1.0.0", firstUserRating, firstApplicationCreator, 49.99, false, "RPG");
     witcher->addApplicationCreator(firstApplicationCreator);
     witcher->addUserRating(firstUserRating);
 
@@ -28,43 +26,32 @@ int main()
     ApplicationCreator fromSoftware("890l", "FromSoftware", "fromsoftware@gmail.com");
 
     applicationsList.addCreatorsAndRatings(ghostOfTsushima, john13, fromSoftware);
-
     applicationsList.addApplication(adobeReader);
     applicationsList.addApplication(microsoftWord);
 
-    //applicationsList.showData();
-
     applicationsList.addCreatorsAndRatings(microsoftWord, john13, firstApplicationCreator);
-
-    //applicationsList.showData();
 
     applicationsList.setApplicationId(*witcher, "576a");
 
-    //applicationsList.showData();
-
     applicationsList.setApplicationName(starWars, "star wars");
-
-    //applicationsList.showData();
 
     ApplicationCreator cdProjecktRed("12345", "CDProjektRed", "cdprojecktred@gmail.com");
     applicationsList.setCreatorDetails(*witcher, cdProjecktRed);
-
-    //applicationsList.showData();
 
     UserRating jim(4.9, "Jimmy", "a masterpiece");
     applicationsList.addUserRatings(*witcher, jim);
 
     applicationsList.deleteAppType(microsoftWord, 2);
-    //applicationsList.showData();
 
     applicationsList.addAppType(microsoftWord, "pdf");
-    //applicationsList.showData();
 
     OfficeApp libreOffice("99z", "Libre Office", "0.0.5", 0.0, {".doc", ".docx", ".xls"});
 
     applicationsList.addApplication(libreOffice);
 
     applicationsList.showData();
+
+    applicationsList.printListsToFile();
 
     return 0;
 }

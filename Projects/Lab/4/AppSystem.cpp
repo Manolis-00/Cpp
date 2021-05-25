@@ -9,10 +9,10 @@ AppSystem::AppSystem() {
 void AppSystem::addApplication(Application &applicationToAdd) {
     applications.push_back(&applicationToAdd);
 
-    if(typeid(OfficeApp) == typeid(applicationToAdd) && applicationToAdd.price == 0.0)
+    if (typeid(OfficeApp) == typeid(applicationToAdd) && applicationToAdd.price == 0.0)
         freeOfficeApps.push_back(&applicationToAdd);
 
-    if(typeid(GameApp) == typeid(applicationToAdd) && applicationToAdd.starsAverage > 4)
+    if (typeid(GameApp) == typeid(applicationToAdd) && applicationToAdd.starsAverage > 4)
         goodGames.push_back(&applicationToAdd);
 }
 
@@ -23,132 +23,135 @@ void AppSystem::addCreatorsAndRatings(Application &applicationToAdd,
     applicationToAdd.addApplicationCreator(creatorFeatures);
 }
 
-void AppSystem::setApplicationId(Application &application, char *newApplicationID)
-{
+void AppSystem::setApplicationId(Application &application, char *newApplicationID) {
     application.applicationId = newApplicationID;
 }
 
-void AppSystem::setApplicationName(Application &application, string newApplicationName)
-{
+void AppSystem::setApplicationName(Application &application, string newApplicationName) {
     application.applicationName = newApplicationName;
 }
 
-void AppSystem::setMinimumCompatibleOSVersion(Application &application, string newMinimumCompatibleOSVersion)
-{
+void AppSystem::setMinimumCompatibleOSVersion(Application &application, string newMinimumCompatibleOSVersion) {
     application.minimumCompatibleOSVersion = newMinimumCompatibleOSVersion;
 }
 
-void AppSystem::setPrice(Application &application, float newPrice)
-{
+void AppSystem::setPrice(Application &application, float newPrice) {
     application.price = newPrice;
 }
 
-void AppSystem::setCreatorDetails(Application &application, ApplicationCreator &newCreatorDetails)
-{
+void AppSystem::setCreatorDetails(Application &application, ApplicationCreator &newCreatorDetails) {
     application.creatorDetails.clear();
     application.creatorDetails.assign(1, newCreatorDetails);
 }
 
-void AppSystem::addUserRatings(Application &application, UserRating &newUserRatings)
-{
+void AppSystem::addUserRatings(Application &application, UserRating &newUserRatings) {
     application.userRatings.push_back(newUserRatings);
 }
 
-void AppSystem::setOnLine(GameApp &gameApp, bool newOnLine)
-{
+void AppSystem::setOnLine(GameApp &gameApp, bool newOnLine) {
     gameApp.onLine = newOnLine;
 }
 
-void AppSystem::setGameCategory(GameApp &gameApp, string newGameCategory)
-{
+void AppSystem::setGameCategory(GameApp &gameApp, string newGameCategory) {
     gameApp.gameCategory = newGameCategory;
 }
 
-void AppSystem::deleteAppType(OfficeApp &officeApp, int index)
-{
-    officeApp.appTypes.erase(officeApp.appTypes.begin()+index);
+void AppSystem::deleteAppType(OfficeApp &officeApp, int index) {
+    officeApp.appTypes.erase(officeApp.appTypes.begin() + index);
 }
 
-void AppSystem::addAppType(OfficeApp &officeApp, string newType)
-{
+void AppSystem::addAppType(OfficeApp &officeApp, string newType) {
     officeApp.appTypes.push_back(newType);
 }
 
-void AppSystem::setCreatorID(ApplicationCreator &applicationCreator, string newCreatorID)
-{
+void AppSystem::setCreatorID(ApplicationCreator &applicationCreator, string newCreatorID) {
     applicationCreator.applicationCreatorID = newCreatorID;
 }
 
-void AppSystem::setCreatorName(ApplicationCreator &applicationCreator, char *newCreatorName)
-{
+void AppSystem::setCreatorName(ApplicationCreator &applicationCreator, char *newCreatorName) {
     delete applicationCreator.applicationCreatorName;
-    applicationCreator.applicationCreatorName = new char [strlen(newCreatorName) + 1];
+    applicationCreator.applicationCreatorName = new char[strlen(newCreatorName) + 1];
     strcpy(applicationCreator.applicationCreatorName, newCreatorName);
 }
 
-void AppSystem::setCreatorEmail(ApplicationCreator &applicationCreator, string newEmail)
-{
+void AppSystem::setCreatorEmail(ApplicationCreator &applicationCreator, string newEmail) {
     applicationCreator.email = newEmail;
 }
 
-void AppSystem::setStars(UserRating &userRating, float newStars)
-{
+void AppSystem::setStars(UserRating &userRating, float newStars) {
     userRating.userStars = newStars;
 }
 
-void AppSystem::setUserName(UserRating &userRating, string newUserName)
-{
+void AppSystem::setUserName(UserRating &userRating, string newUserName) {
     userRating.userName = newUserName;
 }
 
-void AppSystem::setComment(UserRating &userRating, string comment)
-{
+void AppSystem::setComment(UserRating &userRating, string comment) {
     userRating.userComment = comment;
 }
 
-void AppSystem::deleteMaliciousCreator(string applicationCreator)
-{
+void AppSystem::deleteMaliciousCreator(string applicationCreator) {
 
-    for(int i = 0; i < applications.size(); i++)
-    {
-        if(applications[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
-            applications.erase(applications.begin()+i);
+    for (int i = 0; i < applications.size(); i++) {
+        bool isMaliciousCreator = applications[i]->creatorDetails[0].applicationCreatorID == applicationCreator;
+        if (isMaliciousCreator)
+            applications.erase(applications.begin() + i);
     }
 
-    for(int i = 0; i < freeOfficeApps.size(); i++)
-    {
-        if(freeOfficeApps[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
-            freeOfficeApps.erase(freeOfficeApps.begin()+1);
+    for (int i = 0; i < freeOfficeApps.size(); i++) {
+        if (freeOfficeApps[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
+            freeOfficeApps.erase(freeOfficeApps.begin() + i);
     }
 
-    for(int i = 0; i < goodGames.size(); i++)
-    {
-        if(goodGames[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
-            goodGames.erase(goodGames.begin()+1);
+    for (int i = 0; i < goodGames.size(); i++) {
+        if (goodGames[i]->creatorDetails[0].applicationCreatorID == applicationCreator)
+            goodGames.erase(goodGames.begin() + i);
+    }
+}
+
+void AppSystem::printListsToFile() {
+    ofstream myFile;
+    myFile.open("new.txt");
+
+    for (auto application : applications) {
+
+        string appDetail;
+        appDetail.append(application->applicationName)
+                .append(", ")
+                .append(to_string(application->price))
+                .append(", ")
+                .append(application->minimumCompatibleOSVersion)
+                .append(", ")
+                .append(application->applicationId)
+                .append(", ")
+                .append(to_string(application->starsAverage));
+
+
+        myFile << appDetail << "\n";
     }
 
+
+    myFile.close();
 }
 
 void AppSystem::showData() {
-    for(auto application : applications)
-    {
+
+    for (auto application : applications) {
         application->showData();
     }
 
-    cout<<"The free Office Applications are: "<<endl;
+    cout << "The free Office Applications are: " << endl;
 
-    for(auto freeOfficeApp : freeOfficeApps)
-    {
-        cout<<freeOfficeApp->applicationName;
-        cout<<"\n";
+    for (auto freeOfficeApp : freeOfficeApps) {
+        cout << freeOfficeApp->applicationName;
+        cout << "\n";
     }
 
-    cout<<"\n"<<"Games with average rating greater than 4 stars: "<<endl;
+    cout << "\n" << "Games with average rating greater than 4 stars: " << endl;
 
-    for(auto goodGame : goodGames)
-    {
-        cout<<goodGame->applicationName;
-        cout<<"\n";
+    for (auto goodGame : goodGames) {
+        cout << goodGame->applicationName;
+        cout << "\n";
     }
 
 }

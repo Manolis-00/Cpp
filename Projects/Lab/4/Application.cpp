@@ -84,5 +84,5 @@ void Application::setStarsAverage(Application &application)
         starsAverage += application.userRatings[0].getUserStars();
     }
 
-    starsAverage = starsAverage/userRatings.size();
+    //starsAverage = starsAverage/userRatings.size();
 }

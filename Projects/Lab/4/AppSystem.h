@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <type_traits>
+#include <fstream>
 
 using namespace std;
 
@@ -62,6 +63,8 @@ public:
     void setComment(UserRating &userRating, string comment);
 
     void deleteMaliciousCreator(string applicationCreator);
+
+    void printListsToFile();
 
     void showData();
 };
