@@ -1,15 +1,10 @@
 #include "UserRating.h"
 
-UserRating::UserRating(float userStars, const string &userName, const string &userComment)
+UserRating::UserRating(double userStars, const string &userName, const string &userComment)
 {
     this->userStars = userStars;
     this->userName = userName;
     this->userComment = userComment;
-}
-
-void UserRating::showData()
-{
-    cout<<"User Rating: "<<userStars<<"\n"<<"User Name: "<<userName<<"\n"<<"User Comment: "<<userComment<<"\n"<<endl;
 }
 
 float UserRating::getUserStars() const
@@ -25,4 +20,9 @@ string UserRating::getUserName() const
 string UserRating::getUserComment() const
 {
     return userComment;
+}
+
+void UserRating::showData()
+{
+    cout<<"User Rating: "<<userStars<<"\n"<<"User Name: "<<userName<<"\n"<<"User Comment: "<<userComment<<"\n"<<endl;
 }

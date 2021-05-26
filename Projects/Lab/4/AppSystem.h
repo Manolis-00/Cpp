@@ -36,7 +36,7 @@ public:
 
     void setMinimumCompatibleOSVersion(Application &application, string newMinimumCompatibleOSVersion);
 
-    void setPrice(Application &application, float newPrice);
+    void setPrice(Application &application, double newPrice);
 
     void setCreatorDetails(Application &application, ApplicationCreator &newCreatorDetails);
 
@@ -56,7 +56,7 @@ public:
 
     void setCreatorEmail(ApplicationCreator &applicationCreator, string newEmail);
 
-    void setStars(UserRating &userRating, float newStars);
+    void setStars(UserRating &userRating, double newStars);
 
     void setUserName(UserRating &userRating, string newUserName);
 
@@ -64,7 +64,7 @@ public:
 
     void deleteMaliciousCreator(string applicationCreator);
 
-    void printListsToFile();
+    void showDataToFile();
 
     void showData();
 };

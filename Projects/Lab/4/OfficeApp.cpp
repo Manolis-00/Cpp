@@ -3,7 +3,7 @@
 OfficeApp::OfficeApp(char *applicationId,
                      const string &applicationName,
                      const string &minimumCompatibleOsVersion,
-                     float price,
+                     double price,
                      const vector<string> &appTypes):
         Application(applicationId, applicationName, minimumCompatibleOsVersion, price)
 {
@@ -15,11 +15,40 @@ OfficeApp::OfficeApp(char *applicationId,
                      const string &minimumCompatibleOsVersion,
                      UserRating &userFeature,
                      ApplicationCreator &creatorFeatures,
-                     float price,
+                     double price,
                      const vector<string> &appTypes):
         Application(applicationId, applicationName, minimumCompatibleOsVersion, userFeature, creatorFeatures, price)
 {
     this->appTypes = appTypes;
+}
+
+void OfficeApp::showDataToFile()
+{
+    ofstream myFile;
+    myFile.open("new.txt", std::ios_base::app);
+
+    string appDetails;
+    appDetails.append("Application Details: ")
+            .append(applicationId)
+            .append(", ")
+            .append(applicationName)
+            .append(", ")
+            .append(minimumCompatibleOSVersion)
+            .append(", ")
+            .append(to_string(price))
+            .append(", ")
+            .append(to_string(starsAverage))
+            .append("\n");
+
+    for(auto appType : appTypes)
+        appDetails.append("Compatible FIle Types: ")
+                  .append(appType)
+                  .append(", ");
+
+    myFile<<appDetails<<endl;
+
+    Application::printRatingsToFile();
+    Application::printCreatorsToFile();
 }
 
 void OfficeApp::showData()

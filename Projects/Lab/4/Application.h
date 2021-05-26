@@ -21,8 +21,8 @@ protected:
     string minimumCompatibleOSVersion;
     vector<ApplicationCreator> creatorDetails;
     vector<UserRating> userRatings;
-    float price;
-    float starsAverage;
+    double price;
+    double starsAverage;
 
 public:
     friend class AppSystem;
@@ -30,20 +30,26 @@ public:
     Application(char *applicationId,
                 const string &applicationName,
                 const string &minimumCompatibleOsVersion,
-                float price);
+                double price);
 
     Application(char *applicationId,
                 const string &applicationName,
                 const string &minimumCompatibleOsVersion,
                 UserRating &userRating,
                 ApplicationCreator &applicationCreator,
-                float price);
+                double price);
 
     virtual void showData();
 
+    virtual void showDataToFile();
+
     virtual void printRatings();
 
+    virtual void printRatingsToFile();
+
     virtual void printCreators();
+
+    virtual void printCreatorsToFile();
 
     void addUserRating(UserRating &userRating);
 
@@ -51,5 +57,5 @@ public:
 
     float getStars(Application &application);
 
-    void setStarsAverage(Application &application);
+    void setStarsAverage();
 };

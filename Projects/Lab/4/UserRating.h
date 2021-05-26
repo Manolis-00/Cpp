@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -12,13 +13,13 @@ using namespace std;
 class UserRating
 {
 private:
-    float userStars;
+    double userStars;
     string userName;
     string userComment;
     friend class AppSystem;
 
 public:
-    UserRating(float userStars,
+    UserRating(double userStars,
                const string &userName,
                const string &userComment);
 

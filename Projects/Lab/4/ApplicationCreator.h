@@ -5,8 +5,10 @@
 #include <string>
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 using namespace std;
+using std::ifstream;
 
 #endif //EXERCISE_4_1_APPLICATIONCREATOR_H
 
@@ -19,9 +21,19 @@ private:
     friend class AppSystem;
 
 public:
+    ApplicationCreator();
+
     ApplicationCreator(const string &applicationCreatorId,
                        char *applicationCreatorName,
                        const string &email);
+
+    string getApplicationCreatorID() const;
+
+    char *getApplicationCreatorName() const;
+
+    string getEmail() const;
+
+    void readDetailsFromFile(string filePath);
 
     void showData();
 };

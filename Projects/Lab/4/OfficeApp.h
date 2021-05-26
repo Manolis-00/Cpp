@@ -17,7 +17,7 @@ public:
     OfficeApp(char *applicationId,
               const string &applicationName,
               const string &minimumCompatibleOsVersion,
-              float price,
+              double price,
               const vector<string> &appTypes);
 
     OfficeApp(char *applicationId,
@@ -25,8 +25,10 @@ public:
               const string &minimumCompatibleOsVersion,
               UserRating &userFeature,
               ApplicationCreator &creatorFeatures,
-              float price,
+              double price,
               const vector<string> &appTypes);
+
+    void showDataToFile() override;
 
     void showData() override;
 };

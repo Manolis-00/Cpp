@@ -49,9 +49,15 @@ int main()
 
     applicationsList.addApplication(libreOffice);
 
-    applicationsList.showData();
+    //applicationsList.showData();
 
-    applicationsList.printListsToFile();
+    //applicationsList.showDataToFile();
+
+    ApplicationCreator newCreator;
+
+    newCreator.readDetailsFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\creator.txt");
+
+    newCreator.showData();
 
     return 0;
 }

@@ -17,7 +17,7 @@ public:
     GameApp(char *applicationId,
             const string &applicationName,
             const string &minimumCompatibleOsVersion,
-            float price,
+            double price,
             bool onLine,
             const string &gameCategory);
 
@@ -26,9 +26,11 @@ public:
             const string &minimumCompatibleOsVersion,
             UserRating &userFeature,
             ApplicationCreator &creatorFeatures,
-            float price,
+            double price,
             bool onLine,
             const string &gameCategory);
+
+    void showDataToFile() override;
 
     void showData() override;
 };

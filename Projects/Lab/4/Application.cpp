@@ -3,7 +3,7 @@
 Application::Application(char *applicationId,
                          const string &applicationName,
                          const string &minimumCompatibleOsVersion,
-                         float price) {
+                         double price) {
     this->applicationId = new char[strlen(applicationId) + 1];
     strcpy(this->applicationId, applicationId);
     this->applicationName = applicationName;
@@ -19,7 +19,7 @@ Application::Application(char *applicationId,
                          const string &minimumCompatibleOsVersion,
                          UserRating &userRating,
                          ApplicationCreator &applicationCreator,
-                         float price) {
+                         double price) {
     this->applicationId = new char[strlen(applicationId) + 1];
     strcpy(this->applicationId, applicationId);
     this->applicationName = applicationName;
@@ -28,12 +28,7 @@ Application::Application(char *applicationId,
     this->userRatings.assign(1, userRating);
     this->creatorDetails.assign(1, applicationCreator);
 
-    for(int i = 0; i < userRatings.size(); i++)
-    {
-        starsAverage += userRatings[0].getUserStars();
-    }
-
-    starsAverage = starsAverage/userRatings.size();
+    setStarsAverage();
 }
 
 void Application::showData() {
@@ -44,10 +39,55 @@ void Application::showData() {
     printRatings();
 }
 
+void Application::showDataToFile()
+{
+    ofstream myFile;
+    myFile.open("new.txt", std::ios_base::app);
+
+    string appDetails;
+    appDetails.append("Application Details: ")
+              .append("\n")
+              .append(applicationId)
+              .append(", ")
+              .append(applicationName)
+              .append(", ")
+              .append(minimumCompatibleOSVersion)
+              .append(", ")
+              .append(to_string(price))
+              .append(", ")
+              .append(to_string(starsAverage));
+
+    myFile<<appDetails<<"\n"<<"User Ratings: "<<endl;
+    printRatingsToFile();
+
+}
+
 void Application::printRatings()
 {
     for (UserRating rating : userRatings)
         rating.showData();
+}
+
+void Application::printRatingsToFile()
+{
+    ofstream myFile;
+    myFile.open("new.txt", std::ios_base::app);
+
+    for(UserRating rating : userRatings)
+    {
+        string appDetails;
+        appDetails.append(to_string(rating.getUserStars()))
+                  .append(", ")
+                  .append(rating.getUserName())
+                  .append(", ")
+                  .append(rating.getUserComment());
+
+        myFile<<appDetails<<endl;
+    }
+
+    myFile<<"Application Creator: "<<endl;
+    printCreatorsToFile();
+
 }
 
 void Application::printCreators()
@@ -56,16 +96,29 @@ void Application::printCreators()
         creator.showData();
 }
 
+void Application::printCreatorsToFile()
+{
+    ofstream myFile;
+    myFile.open("new.txt", std::ios_base::app);
+
+    for(ApplicationCreator creator : creatorDetails)
+    {
+        string appDetails;
+        appDetails.append("Application Creator: ")
+                  .append(creator.getApplicationCreatorID())
+                  .append(", ")
+                  .append(creator.getApplicationCreatorName())
+                  .append(", ")
+                  .append(creator.getEmail());
+    }
+
+}
+
 
 void Application::addUserRating(UserRating &userRating) {
     userRatings.assign(1, userRating);
 
-    for(int i = 0; i < userRatings.size(); i++)
-    {
-        starsAverage += userRatings[0].getUserStars();
-    }
-
-    starsAverage = starsAverage/userRatings.size();
+    setStarsAverage();
 }
 
 void Application::addApplicationCreator(ApplicationCreator &applicationCreator) {
@@ -77,12 +130,16 @@ float Application::getStars(Application &application)
     return application.userRatings[0].getUserStars();
 }
 
-void Application::setStarsAverage(Application &application)
+void Application::setStarsAverage()
 {
-    for(int i = 0; i < userRatings.size(); i++)
+    if(userRatings.size() > 0)
     {
-        starsAverage += application.userRatings[0].getUserStars();
+        for(int i = 0; i < userRatings.size(); i++)
+        {
+            starsAverage += userRatings[0].getUserStars();
+        }
+
+        starsAverage = starsAverage/userRatings.size();
     }
 
-    //starsAverage = starsAverage/userRatings.size();
 }

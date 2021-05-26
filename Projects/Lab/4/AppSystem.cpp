@@ -35,7 +35,7 @@ void AppSystem::setMinimumCompatibleOSVersion(Application &application, string n
     application.minimumCompatibleOSVersion = newMinimumCompatibleOSVersion;
 }
 
-void AppSystem::setPrice(Application &application, float newPrice) {
+void AppSystem::setPrice(Application &application, double newPrice) {
     application.price = newPrice;
 }
 
@@ -78,7 +78,7 @@ void AppSystem::setCreatorEmail(ApplicationCreator &applicationCreator, string n
     applicationCreator.email = newEmail;
 }
 
-void AppSystem::setStars(UserRating &userRating, float newStars) {
+void AppSystem::setStars(UserRating &userRating, double newStars) {
     userRating.userStars = newStars;
 }
 
@@ -109,29 +109,14 @@ void AppSystem::deleteMaliciousCreator(string applicationCreator) {
     }
 }
 
-void AppSystem::printListsToFile() {
-    ofstream myFile;
-    myFile.open("new.txt");
+void AppSystem::showDataToFile()
+{
 
-    for (auto application : applications) {
-
-        string appDetail;
-        appDetail.append(application->applicationName)
-                .append(", ")
-                .append(to_string(application->price))
-                .append(", ")
-                .append(application->minimumCompatibleOSVersion)
-                .append(", ")
-                .append(application->applicationId)
-                .append(", ")
-                .append(to_string(application->starsAverage));
-
-
-        myFile << appDetail << "\n";
+    for(auto  application : applications)
+    {
+        application->showDataToFile();
     }
 
-
-    myFile.close();
 }
 
 void AppSystem::showData() {
