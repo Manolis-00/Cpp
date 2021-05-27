@@ -1,5 +1,10 @@
 #include "Application.h"
 
+Application::Application()
+{
+
+}
+
 Application::Application(char *applicationId,
                          const string &applicationName,
                          const string &minimumCompatibleOsVersion,

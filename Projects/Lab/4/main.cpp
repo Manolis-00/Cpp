@@ -59,5 +59,18 @@ int main()
 
     newCreator.showData();
 
+    UserRating johnDoe;
+
+    johnDoe.readRatingFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\rating.txt");
+
+    johnDoe.showData();
+
+    GameApp vampyr;
+
+    vampyr.readGameDataFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\game.txt");
+    vampyr.addUserRating(johnDoe);
+    vampyr.addApplicationCreator(newCreator);
+    vampyr.showData();
+
     return 0;
 }

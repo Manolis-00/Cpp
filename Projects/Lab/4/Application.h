@@ -27,6 +27,8 @@ protected:
 public:
     friend class AppSystem;
 
+    Application();
+
     Application(char *applicationId,
                 const string &applicationName,
                 const string &minimumCompatibleOsVersion,

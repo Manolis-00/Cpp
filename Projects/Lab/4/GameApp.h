@@ -14,6 +14,8 @@ private:
     friend class AppSystem;
 
 public:
+    GameApp();
+
     GameApp(char *applicationId,
             const string &applicationName,
             const string &minimumCompatibleOsVersion,
@@ -29,6 +31,8 @@ public:
             double price,
             bool onLine,
             const string &gameCategory);
+
+    void readGameDataFromFile(string filePath);
 
     void showDataToFile() override;
 

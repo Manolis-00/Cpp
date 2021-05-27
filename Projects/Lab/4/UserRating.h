@@ -19,6 +19,8 @@ private:
     friend class AppSystem;
 
 public:
+    UserRating();
+
     UserRating(double userStars,
                const string &userName,
                const string &userComment);
@@ -28,6 +30,8 @@ public:
     string getUserName() const;
 
     string getUserComment() const;
+
+    void readRatingFromFile(string filePath);
 
     void showData();
 };
