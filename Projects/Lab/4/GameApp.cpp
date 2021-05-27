@@ -67,6 +67,7 @@ void GameApp::readGameDataFromFile(string filePath)
         applicationId[i] = appID[i];
 
     price = stod(filePrice);
+
     if(stoi(boolean) == 1)
         onLine = true;
     else

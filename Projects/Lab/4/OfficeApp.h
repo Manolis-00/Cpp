@@ -14,6 +14,8 @@ private:
     friend class AppSystem;
 
 public:
+    OfficeApp();
+
     OfficeApp(char *applicationId,
               const string &applicationName,
               const string &minimumCompatibleOsVersion,
@@ -27,6 +29,8 @@ public:
               ApplicationCreator &creatorFeatures,
               double price,
               const vector<string> &appTypes);
+
+    void readAppDataFromFile(string filePath);
 
     void showDataToFile() override;
 

@@ -57,20 +57,26 @@ int main()
 
     newCreator.readDetailsFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\creator.txt");
 
-    newCreator.showData();
+    //newCreator.showData();
 
     UserRating johnDoe;
 
     johnDoe.readRatingFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\rating.txt");
 
-    johnDoe.showData();
+    //johnDoe.showData();
 
     GameApp vampyr;
 
     vampyr.readGameDataFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\game.txt");
     vampyr.addUserRating(johnDoe);
     vampyr.addApplicationCreator(newCreator);
-    vampyr.showData();
+    //vampyr.showData();
+
+    OfficeApp cLion;
+    cLion.readAppDataFromFile("D:\\Department of Computer Engineering and Computer Science\\Computer Programming\\Meletioy C++\\Lab\\Exercise 4.2\\officeApp.txt");
+    cLion.addUserRating(johnDoe);
+    cLion.addApplicationCreator(newCreator);
+    cLion.showData();
 
     return 0;
 }

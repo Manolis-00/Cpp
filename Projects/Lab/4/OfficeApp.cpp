@@ -1,5 +1,10 @@
 #include "OfficeApp.h"
 
+OfficeApp::OfficeApp()
+{
+
+}
+
 OfficeApp::OfficeApp(char *applicationId,
                      const string &applicationName,
                      const string &minimumCompatibleOsVersion,
@@ -20,6 +25,43 @@ OfficeApp::OfficeApp(char *applicationId,
         Application(applicationId, applicationName, minimumCompatibleOsVersion, userFeature, creatorFeatures, price)
 {
     this->appTypes = appTypes;
+}
+
+void OfficeApp::readAppDataFromFile(string filePath)
+{
+    char buffer[300];
+    ifstream appFile;
+
+    appFile.open(filePath);
+
+    if(!appFile.is_open())
+    {
+        cout<<"Error opening file";
+        exit(1);
+    }
+
+    string appID;
+    string filePrice;
+    string inputString;
+
+    while (!appFile.eof())
+    {
+        getline(appFile, appID, '\n');
+        getline(appFile, applicationName, '\n');
+        getline(appFile, minimumCompatibleOSVersion, '\n');
+        getline(appFile, filePrice, '\n');
+        while (appFile>>inputString)
+            appTypes.push_back(inputString);
+    }
+
+    applicationId = new char[appID.length() - 2];
+    int length = appID.length();
+
+    for(int i = 0; i < length; i++)
+        applicationId[i] = appID[i];
+
+    price = stod(filePrice);
+
 }
 
 void OfficeApp::showDataToFile()
